@@ -28,7 +28,7 @@ import WithdrawApproval from './components/WithdrawApproval';
 import DashboardView from './components/DashboardView';
 import MarqueeUpdate from './components/MarqueeUpdate';
 import AllUsers from './components/AllUsers'; // Import the new component
-import HarufUpdate from './components/harufUpdate';
+
 import Bets from './components/Bets';
 
 

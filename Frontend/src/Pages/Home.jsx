@@ -31,7 +31,7 @@ const Home = () => {
         <button className="p-2">
           <Menu size={24} />
         </button>
-        <h1 className="text-xl font-bold">KALYAN ONLINE</h1>
+        <h1 className="text-xl font-bold">SATTAKING</h1>
         <div className="w-8"></div>
       </div>
 
