@@ -1,8 +1,13 @@
 
-   import { useState } from 'react';
-import { Menu, Award, MessageCircle } from 'lucide-react';
+import { Menu, Award, MessageCircle, CircleDollarSign } from 'lucide-react';
 import Footer from '../components/Footer'
-import MarketCard from '../components/Cards.jsx/MarketCard'
+import DelhiBazaarCard from '../components/Cards.jsx/DelhiBazaar';
+import DhanKuberCard from '../components/Cards.jsx/DhanKuber';
+import DisawarCard from '../components/Cards.jsx/Disawar';
+import FaridabadCard from '../components/Cards.jsx/Faridabad';
+import GaliCard from '../components/Cards.jsx/GaliCard';
+import ShreeGaneshCard from '../components/Cards.jsx/ShreeGanesh';
+import { useState } from 'react';
 
 
 const Home = () => {
@@ -19,12 +24,6 @@ const Home = () => {
     { game: '(09:30 AM-08:35 PM)', time: '', result: '' }
   ]);
   return (
- 
-
-
-
-
-
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 flex items-center justify-between">
@@ -32,7 +31,10 @@ const Home = () => {
           <Menu size={24} />
         </button>
         <h1 className="text-xl font-bold">SATTAKING</h1>
-        <div className="w-8"></div>
+        <div className="flex items-center space-x-1">
+            <CircleDollarSign size={20} />
+            <span className="text-lg font-bold">0.00</span>
+        </div>
       </div>
 
       {/* Balance Cards */}
@@ -47,8 +49,20 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Market Cards */}
+      <div className="p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <FaridabadCard />
+            <DelhiBazaarCard />
+            <GaliCard />
+            <DisawarCard />
+            {/* <DhanKuberCard /> */}
+            {/* <ShreeGaneshCard /> */}
+        </div>
+      </div>
+
       {/* Today Results Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-orange-400 mx-4 rounded-lg p-3 flex items-center justify-between mb-4">
+      {/* <div className="bg-gradient-to-r from-orange-500 to-orange-400 mx-4 rounded-lg p-3 flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2">
           <Award className="text-white" size={20} />
           <span className="text-white font-semibold">Today Results</span>
@@ -57,21 +71,21 @@ const Home = () => {
           <MessageCircle size={18} />
           <span>9111955042</span>
         </a>
-      </div>
+      </div> */}
 
       {/* Results Table */}
       <div className="mx-4 mb-4">
         <div className="bg-white rounded-lg shadow overflow-hidden">
           {/* Table Header */}
-          <div className="grid grid-cols-4 bg-gradient-to-r from-orange-400 to-orange-300 text-white font-semibold text-sm">
+          {/* <div className="grid grid-cols-4 bg-gradient-to-r from-orange-400 to-orange-300 text-white font-semibold text-sm">
             <div className="p-3 text-center">Game Play Timing</div>
             <div className="p-3 text-center">Open Time</div>
             <div className="p-3 text-center">Close Time</div>
             <div className="p-3 text-center">Total Result</div>
-          </div>
+          </div> */}
 
           {/* Table Body */}
-          {results.map((item, index) => (
+          {/* {results.map((item, index) => (
             <div 
               key={index} 
               className={`grid grid-cols-4 border-b border-gray-200 text-sm ${
@@ -93,28 +107,15 @@ const Home = () => {
                 </span>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
 
       {/* Bottom Navigation or Additional Content */}
-      <div className="h-20"></div>
+      {/* <div className="h-20"></div> */}
+      <Footer/>
     </div>
   );
 }
-    <div className='pt-20'>
-
-  
-      <div className='mb-5'>   <MarketCard marketName="GHAZIABAD" openTime="03:00 PM" closeTime="08:40 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="DELHI BAZAAR" openTime="08:00 PM" closeTime="06:40 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="GALI" openTime="03:00 PM" closeTime="08:40 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="DISAWAR" openTime="03:00 PM" closeTime="08:40 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="DHAN KUBER" openTime="11:00 PM" closeTime="05:40 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="SHREE GANESH" openTime="12:00 PM" closeTime="08:00 PM" /></div>
-      <div className='mb-5'>   <MarketCard marketName="FARIDABAD" openTime="03:00 PM" closeTime="08:40 PM" /></div>
-
-<Footer/>
-    </div>
-
 
 export default Home

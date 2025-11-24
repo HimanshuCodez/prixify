@@ -6,7 +6,7 @@ const GaliCard = () => {
     <MarketCard
       marketName="GALI"
       openTime="03:00 PM"
-      closeTime="08:40 PM"
+      closeTime="10:30 PM"
     />
   );
 };

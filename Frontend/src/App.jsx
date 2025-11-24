@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Withdraw from './Pages/Withdraw';
 import AdminDashboard from './Admin/Admin';
+import HarufGrid from './Pages/Haruf';
 
 import AdminRoute from './Admin/AdminRoute';
 import Spinner from './components/Loader';
@@ -54,6 +55,7 @@ const AppContent = () => {
         <Route path="/fixnumber" element={<FixNumber />} />
         <Route path="/wingame" element={<WinGame />} />
         <Route path="/login" element={<PhoneSignIn />} />
+        <Route path="/haruf" element={<HarufGrid />} />
         <Route path="/testphonesignup" element={<PhoneSignUp />} />
         <Route path="/addcash" element={<AddCash />} />
         <Route path="/Profile" element={<Profile />} />
@@ -70,7 +72,7 @@ const AppContent = () => {
         <Route path="/Admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         {/*  */}
       </Routes>
-    
+      <ToastContainer />
     </>
   );
 }

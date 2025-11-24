@@ -6,7 +6,7 @@ const FaridabadCard = () => {
     <MarketCard
       marketName="FARIDABAD"
       openTime="03:00 PM"
-      closeTime="08:40 PM"
+      closeTime="05:30 PM"
     />
   );
 };

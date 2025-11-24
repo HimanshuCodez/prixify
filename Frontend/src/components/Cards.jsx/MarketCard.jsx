@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import HarufGrid from "../../Pages/Haruf";
+import { useNavigate } from "react-router-dom";
 import { Play, BarChart2, X } from "lucide-react";
 import ResultChart from "../ResultChart";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 
 const MarketCard = ({ marketName, openTime, closeTime }) => {
-  const [open, setOpen] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [todayResult, setTodayResult] = useState("..");
   const [yesterdayResult, setYesterdayResult] = useState("..");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -83,27 +83,15 @@ const MarketCard = ({ marketName, openTime, closeTime }) => {
     );
   }
 
-  if (open) {
-    return (
-      <div>
-        <div className="bg-sky-800 p-2 flex justify-end">
-          <button
-            onClick={() => setOpen(false)}
-            className="bg-red-500 text-white p-2 rounded-full shadow-lg hover:bg-red-600 transition-colors"
-          >
-            <X size={24} />
-          </button>
-        </div>
-        <HarufGrid />
-      </div>
-    );
-  }
+  const handleCardClick = () => {
+    navigate("/haruf");
+  };
 
   return (
     <div className="w-full max-w-md mx-auto">
       {/* Card */}
       <div
-        onClick={() => setOpen(true)}
+        onClick={handleCardClick}
         className="cursor-pointer rounded-xl border-2 border-blue-950 bg-white shadow-md overflow-hidden"
       >
         {/* Header */}
@@ -145,9 +133,14 @@ const MarketCard = ({ marketName, openTime, closeTime }) => {
             </div>
 
             {/* Right play button */}
-            <button className="bg-[#042346]  p-3 rounded-full hover:bg-yellow-600">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCardClick();
+              }}
+              className="bg-[#042346]  p-3 rounded-full hover:bg-yellow-600"
+            >
               <Play
-                onClick={() => setOpen(true)}
                 className="text-white"
                 size={24}
               />

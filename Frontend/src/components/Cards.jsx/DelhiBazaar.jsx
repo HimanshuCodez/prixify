@@ -4,9 +4,9 @@ import MarketCard from "./MarketCard";
 const DelhiBazaarCard = () => {
   return (
     <MarketCard
-      marketName="DELHI BAZAAR"
+      marketName="GHAZIABAD"
       openTime="08:00 PM"
-      closeTime="06:40 PM"
+      closeTime="08:30 PM"
     />
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { doc, onSnapshot, runTransaction, collection, serverTimestamp, query, where, getDocs, writeBatch, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import useAuthStore from "../store/authStore";
 import { toast } from "react-toastify";
 
 const HARUF_PAYOUT_MULTIPLIER = 20;
@@ -52,13 +51,12 @@ const HarufGrid = () => {
 
     const [bettingLoading, setBettingLoading] = useState(false);
 
-    const [balance, setBalance] = useState(0);
-
+    const [balance, setBalance] = useState(1000); // Mock balance
     const [lastWinningNumber, setLastWinningNumber] = useState(null);
 
 
 
-    const { user } = useAuthStore((state) => state.user);
+    const user = { uid: 'test-user', name: 'Test User' }; // Mock user
 
 
 
@@ -280,31 +278,31 @@ const HarufGrid = () => {
 
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (user) {
+    //     if (user) {
 
-            const userDocRef = doc(db, "users", user.uid);
+    //         const userDocRef = doc(db, "users", user.uid);
 
-            const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
+    //         const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
 
-                if (docSnap.exists()) {
+    //             if (docSnap.exists()) {
 
-                    setBalance(docSnap.data().balance || 0);
+    //                 setBalance(docSnap.data().balance || 0);
 
-                } else {
+    //             } else {
 
-                    setBalance(0);
+    //                 setBalance(0);
 
-                }
+    //             }
 
-            });
+    //         });
 
-            return () => unsubscribe();
+    //         return () => unsubscribe();
 
-        }
+    //     }
 
-    }, [user]);
+    // }, [user]);
 
 
 
@@ -424,11 +422,13 @@ const HarufGrid = () => {
 
                 const userDoc = await transaction.get(userDocRef);
 
-                if (!userDoc.exists()) throw new Error("User does not exist!");
+                // if (!userDoc.exists()) throw new Error("User does not exist!"); // Don't check for dummy user
 
 
 
-                const currentBalance = userDoc.data().balance || 0;
+                // const currentBalance = userDoc.data().balance || 0;
+
+                const currentBalance = balance; // Use mock balance
 
                 if (currentBalance < totalBetAmount) throw new Error("Insufficient balance.");
 
@@ -436,7 +436,8 @@ const HarufGrid = () => {
 
                 const newBalance = Math.round((currentBalance - totalBetAmount) * 100) / 100;
 
-                transaction.update(userDocRef, { balance: newBalance });
+                setBalance(newBalance); // Update mock balance locally
+                // transaction.update(userDocRef, { balance: newBalance }); // Don't update firestore for dummy user
 
 
 
